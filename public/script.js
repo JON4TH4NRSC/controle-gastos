@@ -17,8 +17,12 @@ async function carregar() {
 }
 
 async function adicionar() {
+
   const nome = document.getElementById('nome').value;
-  const valor = document.getElementById('valor').value;
+
+  const valor = parseFloat(
+    document.getElementById('valor').value
+  );
 
   await fetch('/gastos', {
     method: 'POST',

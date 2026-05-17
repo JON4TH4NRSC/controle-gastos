@@ -32,7 +32,11 @@ function removerGasto(index) {
 
 function calcularTotal() {
   const gastos = carregarDados();
-  return gastos.reduce((t, g) => t + g.valor, 0);
+
+  return gastos.reduce(
+    (t, g) => t + Number(g.valor),
+    0
+  );
 }
 
 module.exports = { adicionarGasto, listarGastos, removerGasto, calcularTotal };
