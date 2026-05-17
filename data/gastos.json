@@ -1,6 +1,14 @@
 [
   {
-    "nome": "Cafe",
+    "nome": "cafe",
     "valor": 10
+  },
+  {
+    "nome": "mercado",
+    "valor": 20
+  },
+  {
+    "nome": "uber",
+    "valor": 30
   }
 ]
