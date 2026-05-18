@@ -12,10 +12,10 @@ const {
 
 app.use(express.json());
 
-/* ARQUIVOS ESTÁTICOS */
-app.use(express.static('public'));
+/* SERVIR PUBLIC */
+app.use(express.static(path.join(__dirname, '../public')));
 
-/* ROTA PRINCIPAL */
+/* INDEX */
 app.get('/', (req, res) => {
 
   res.sendFile(
@@ -24,14 +24,11 @@ app.get('/', (req, res) => {
 
 });
 
-/* LISTAR GASTOS */
+/* GASTOS */
 app.get('/gastos', (req, res) => {
-
   res.json(listarGastos());
-
 });
 
-/* ADICIONAR */
 app.post('/gastos', (req, res) => {
 
   const { nome, valor } = req.body;
@@ -42,7 +39,6 @@ app.post('/gastos', (req, res) => {
 
 });
 
-/* REMOVER */
 app.delete('/gastos/:id', (req, res) => {
 
   removerGasto(Number(req.params.id));
@@ -51,7 +47,6 @@ app.delete('/gastos/:id', (req, res) => {
 
 });
 
-/* TOTAL */
 app.get('/total', (req, res) => {
 
   res.json({
@@ -60,11 +55,4 @@ app.get('/total', (req, res) => {
 
 });
 
-/* SERVIDOR */
-app.listen(3000, () => {
-
-  console.log(
-    'Servidor rodando em http://localhost:3000'
-  );
-
-});
+module.exports = app;
