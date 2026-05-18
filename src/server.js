@@ -12,10 +12,10 @@ const {
 
 app.use(express.json());
 
-/* SERVIR PUBLIC */
+/* ARQUIVOS ESTÁTICOS */
 app.use(express.static(path.join(__dirname, '../public')));
 
-/* INDEX */
+/* HOME */
 app.get('/', (req, res) => {
 
   res.sendFile(
@@ -26,7 +26,9 @@ app.get('/', (req, res) => {
 
 /* GASTOS */
 app.get('/gastos', (req, res) => {
+
   res.json(listarGastos());
+
 });
 
 app.post('/gastos', (req, res) => {
@@ -47,6 +49,7 @@ app.delete('/gastos/:id', (req, res) => {
 
 });
 
+/* TOTAL */
 app.get('/total', (req, res) => {
 
   res.json({
@@ -55,4 +58,5 @@ app.get('/total', (req, res) => {
 
 });
 
+/* EXPORTAR APP */
 module.exports = app;
