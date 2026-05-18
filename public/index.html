@@ -1,31 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Controle de Gastos</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+
   <div class="container">
+
     <h1>💰 Controle de Gastos</h1>
 
     <div class="form">
-      <input id="nome" placeholder="Nome do gasto">
-      <input id="valor" placeholder="Valor" type="number">
-      <button onclick="adicionar()">Adicionar</button>
+
+      <input
+        id="nome"
+        type="text"
+        placeholder="Nome do gasto"
+      >
+
+      <input
+        id="valor"
+        type="number"
+        placeholder="Valor"
+      >
+
+      <button onclick="adicionar()">
+        Adicionar
+      </button>
+
     </div>
 
     <h2>📄 Lista</h2>
+
     <ul id="lista"></ul>
 
-    <h2 class="total">Total: R$ <span id="total">0</span></h2>
+    <h2 class="total">
+      Total:
+      <span id="total">R$ 0,00</span>
+    </h2>
+
   </div>
 
-  <h2>Cotações em Tempo Real</h2>
+  <!-- COTAÇÕES -->
+  <div class="cotacoes">
 
-  <div id="dolar"></div>
-  <div id="euro"></div>
+    <div class="moeda" id="dolar">
+      💵 Dólar
+      <br>
+      R$ 0,00
+    </div>
+
+    <div class="moeda" id="euro">
+      💶 Euro
+      <br>
+      R$ 0,00
+    </div>
+
+  </div>
 
   <script src="script-api.js"></script>
   <script src="script.js"></script>
+
 </body>
 </html>

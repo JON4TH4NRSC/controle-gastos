@@ -1,14 +1,10 @@
 [
   {
-    "nome": "cafe",
+    "nome": "nbb",
     "valor": 10
   },
   {
-    "nome": "mercado",
+    "nome": "dur",
     "valor": 20
-  },
-  {
-    "nome": "uber",
-    "valor": 30
   }
 ]
