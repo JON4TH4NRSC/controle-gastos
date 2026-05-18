@@ -5,7 +5,7 @@ const app = express();
 const { adicionarGasto, listarGastos, removerGasto, calcularTotal } = require('./main');
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static('public'));
 
 app.get('/gastos', (req, res) => {
   res.json(listarGastos());
