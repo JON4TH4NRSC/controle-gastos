@@ -1,38 +1,46 @@
-const fs = require('fs');
-const path = require('path');
+const supabase = require('./supabase');
 
-const filePath = path.join(__dirname, '../data/gastos.json');
-
-function carregarDados() {
-  if (!fs.existsSync(filePath)) return [];
-  const data = fs.readFileSync(filePath);
-  return JSON.parse(data);
-}
-
-function salvarDados(gastos) {
-  fs.writeFileSync(filePath, JSON.stringify(gastos, null, 2));
-}
-
-function adicionarGasto(nome, valor) {
-  const gastos = carregarDados();
+async function adicionarGasto(nome, valor) {
   if (valor < 0) throw new Error("Valor inválido");
-  gastos.push({ nome, valor });
-  salvarDados(gastos);
+
+  const { error } = await supabase
+    .from('gastos')
+    .insert([{ nome, valor }]);
+
+  if (error) throw error;
 }
 
-function listarGastos() {
-  return carregarDados();
+async function listarGastos() {
+  const { data, error } = await supabase
+    .from('gastos')
+    .select('*')
+    .order('id');
+
+  if (error) throw error;
+
+  return data;
 }
 
-function removerGasto(index) {
-  const gastos = carregarDados();
-  gastos.splice(index, 1);
-  salvarDados(gastos);
+async function removerGasto(id) {
+  const { error } = await supabase
+    .from('gastos')
+    .delete()
+    .eq('id', id);
+
+  if (error) throw error;
 }
 
-function calcularTotal() {
-  const gastos = carregarDados();
-  return gastos.reduce((t, g) => t + g.valor, 0);
+async function calcularTotal() {
+  const gastos = await listarGastos();
+
+  return gastos.reduce((total, gasto) => {
+    return total + Number(gasto.valor);
+  }, 0);
 }
 
-module.exports = { adicionarGasto, listarGastos, removerGasto, calcularTotal };
+module.exports = {
+  adicionarGasto,
+  listarGastos,
+  removerGasto,
+  calcularTotal
+};

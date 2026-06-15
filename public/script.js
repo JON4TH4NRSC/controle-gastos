@@ -7,7 +7,7 @@ async function carregar() {
 
   gastos.forEach((g, i) => {
     const li = document.createElement('li');
-    li.innerHTML = `${g.nome} - R$ ${g.valor} <button onclick="remover(${i})">X</button>`;
+    li.innerHTML = `${g.nome} - R$ ${g.valor} <button onclick="remover(${g.id})">X</button>`;
     lista.appendChild(li);
   });
 
